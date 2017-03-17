@@ -1,0 +1,229 @@
+<style type="text/css">
+body {
+  background: black;
+}
+
+nav.navbar {
+  opacity: 1;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  background-color: black;
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.normal-nav-text {
+  color: white;
+}
+
+/**************************************************
+  Bootstrap Navbar Brand
+**************************************************/
+li.dropdown.navbar-brand, ul.dropdown-menu {
+  float: left;
+  list-style: none;
+  font-weight: bold;
+  font-size: 16px;
+  /* Prevent annoying glyph load flicker */
+  -webkit-animation-name: brand-animate; 
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: brand-animate;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+#brand-text {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Standard webkit */
+@keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.glyphicon {
+    color: white;
+    padding-right: 3px;
+}
+/* Same as regular (override bootstrap default) */
+li.dropdown.navbar-brand > a:focus,
+li.dropdown.navbar-brand:hover, a.dropdown-toggle:hover {
+text-decoration: none;
+color: white;
+background-color: black;
+}
+.navbar-brand > .dropdown-menu {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: solid 1px white;
+}
+.navbar-brand > ul.dropdown-menu > li {
+  border-top: 1px solid white;
+  font-size: 14.5px;
+}
+.navbar-brand > ul.dropdown-menu > li:first-child {
+  border-top: 1px solid black;
+}
+.navbar-brand > .dropdown-menu > li:hover,
+.navbar-brand > .dropdown-menu > li > a:hover {
+  color: white !important;
+  background-color: #474747 !important;
+}
+/**************************************************
+  Bootstrap Navbar Collapse
+**************************************************/
+.navbar-nav {
+  font-size: 16px;
+  font-weight: normal;
+}
+.navbar-collapse {
+	margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* Otherwise it's pushed right a little for some reason */
+/* Note: on collapse, switch to relative to prevent li overlap */
+.navbar-right > li {
+  color: white;
+  background-color: black;
+	margin-bottom: 0;
+  padding-bottom: 0;
+  min-width: 100px;
+}
+.navbar-right > li {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  z-index: 1;
+}
+li.dropdown.navbar-brand > li {
+  border: 1px solid white;
+}
+.navbar-nav li > a {
+  color: white;
+  line-height: 22px;
+}
+.navbar-nav li,
+.navbar-nav li > a{
+  min-height: 50px;
+}
+.navbar-nav li:hover,
+.navbar-nav li > a:hover {
+  color: white;
+  background-color: #474747;
+}
+.navbar-nav .active a {
+  color: white;
+  background-color: #646464;
+}
+.navbar-right .dropdown-menu {
+  margin: 0;
+  padding: 0;
+	border: 1px solid white;
+}
+.navbar-right > .open .dropdown-menu > li,
+.navbar-right > .open .dropdown-menu > li > a {
+  padding: 3px !important;
+  min-height: 15px;  /* drop it back down from 50px above */
+  color: white;
+  background-color: black;
+  padding-bottom: 0;
+}
+.open .dropdown-menu > li:hover,
+.open .dropdown-menu > li > a:hover {
+  color: black;
+  background-color: gray;
+}
+.nav .open > a:focus {
+  color: white;
+}
+.exports, .function-declare, .console-log, .var,
+.period, .argument-parens, .brackets, .variable-name, .html-tag-equal,
+.equals, .new, .return, .rocket, .if-else-while-etc,
+.string, .argument,
+.argument,
+.number,
+.property, .attr-tag, .jQuery-cash, .object, .method {
+  display: none;
+}
+.navbar-toggle {
+  border-color: white;
+}
+.navbar-toggle:hover {
+  background-color: #aaaaaa;
+}
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+/******************************************************/
+/*               Blog [main] page styles              */
+/******************************************************/
+.blog-page#main-row {
+  background: black;
+}
+.articles-container {
+  border: solid 2px white;
+}
+.blog-header {
+  color: white;
+  background: black;
+  border-width: 0 0 2px 0;
+  border-style: dashed;;
+  border-color: white;
+}
+/******************************************************/
+/*             Blog [article] page styles             */
+/******************************************************/
+.article-page#main-row {
+  background: black;
+}
+/******************************************************/
+/*                  About page styles                 */
+/******************************************************/
+#main-container {
+  background: black;
+}
+#about-page-panel {
+  opacity: 1;
+  background: none;
+}
+#about-page-panel-body {
+  color:white;
+  background: black;
+  border: dashed 2px white;
+  border-radius: 10px;
+}
+@media (max-width: 767px) {
+  li {
+    border-top: solid 2px white;
+  }
+  .navbar-right li, li.dropdown {
+    text-align: left;
+    font-size: 14px;
+    border-left: none;
+  }
+  li > a {
+    padding-top: 6px;
+  }
+  .navbar-left {
+    position:relative;
+  }
+  .navbar-brand {
+    text-align: left;
+    padding-left: 2%;
+    border: none;
+  }
+  .navbar-right {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+</style>

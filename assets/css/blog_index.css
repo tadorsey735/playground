@@ -1,0 +1,193 @@
+html,
+
+body {
+  overflow: hidden;
+  background: url('/images/forest-medium-shot-min.png') center center;
+  background-size: cover;
+  -webkit-animation-name: gray-fade; 
+  -webkit-animation-duration: .2s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: gray-fade; 
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.row-fluid.content {
+  z-index:2;
+  display:block;
+  margin-bottom: 1px;
+  padding-bottom: 0;
+  height: 447px;
+  overflow-y: scroll;
+}
+
+.navbar {
+  z-index:3;
+}
+
+/* Right Panel => blog_right_panel.css */
+
+/* Articles (center column) */
+#main-col {
+  margin-top:12px;
+}
+
+.articles-container {
+  background: black;
+  border: 0 solid white;
+  border-radius: 5px;
+  opacity: .4;
+  padding-bottom: 15px;
+  margin-bottom:20px;
+}
+
+.articles-container.no-animation {
+  opacity: 1;
+}
+
+.articles-container.animation {
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-name: make-mostly-opaque; 
+  -webkit-animation-delay: 2s;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  /* Standard Webkit */
+  animation-name: make-mostly-opaque;
+  animation-delay: 2s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@-webkit-keyframes make-mostly-opaque {
+  to { opacity:.8; height: 100%; }
+}
+@keyframes make-mostly-opaque {
+  to { opacity:.8; height: 100%; }
+}
+
+.blog-header {
+  margin:0;
+  padding: 10px;
+  color: black;
+  background: white;
+  border: solid 3px white;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+  font-weight: normal;
+}
+
+.blog-header-text#top {
+  font-size: 50px;
+  font-weight: normal;
+  font-family: 'Life Savers';
+}
+
+.blog-header-text#below {
+  font-size: 25px;
+  font-weight: normal;
+  font-family: ‘Courier New’, Courier, monospace;
+}
+
+.category-header {
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Cinzel Decorative'; /* Google Font: '//fonts.googleapis.com/css?family=Cinzel Decorative' */
+  text-align: left;
+}
+
+.article-container {
+  background: white;
+}
+
+.article-container:hover,
+.article-img:hover {
+  opacity: .75;
+}
+
+.article-container > a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.article-container .article-image-container {
+  background: black;
+  border: 2px solid white;
+  opacity: 1;
+}
+
+#article-title {
+  padding-top: 20px;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#article-blurb {
+  padding: 20px;
+  color: black;
+  font-size: 16px;
+  text-align: left;
+  font-family: Garamond;
+}
+
+.article-container {
+  margin-top: 20px;
+  padding-right: 10px;
+  padding-left:10px;
+}
+
+.hide-for-now {
+  display: none;
+}
+
+
+/*
+@media (min-width: 768px) {
+*/
+  hr.for-phone {
+    display: none;
+  }
+  .article-image-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+    width: 90%;
+    padding-bottom: 60%;
+    float: left;
+    height: 0;
+  }
+  .article-img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+   }
+/*}
+*/
+
+@media (max-width: 767px) {
+  #main-col, .articles-container {
+    border-radius: 0;
+    margin: 0 0 10px 0; /* only margin on the bottom */
+    padding-left: 0;
+    padding-right: 0;
+    border:none;
+  }
+  .blog-header {
+    border-radius: 0;
+  }
+  .blog-header-text#top {
+    font-size: 35px;
+    font-weight: bold;
+  }
+  .blog-header-text#below {
+    font-size: 20px;
+  }
+}

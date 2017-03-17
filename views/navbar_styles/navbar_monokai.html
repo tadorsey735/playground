@@ -1,0 +1,310 @@
+<style type="text/css">
+
+body {
+    font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;
+}
+@-webkit-keyframes gray-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Standard webkit */
+@keyframes gray-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+nav.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: black;
+	border-top: 1px solid white;
+  border-bottom: 2px solid white;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.normal-nav-text {
+  display: none;
+}
+
+/**************************************************
+  Bootstrap Navbar Brand
+**************************************************/
+li.dropdown.navbar-brand, ul.dropdown-menu {
+float: left;
+list-style: none;
+font-size: 14.5px;
+font-weight: normal;
+color: white;
+background-color: black;
+/* Safari 4.0 - 8.0 */
+-webkit-animation-name: brand-animate;
+-webkit-animation-duration: .7s;
+-webkit-animation-fill-mode: forwards;
+/* Standard Webkit */
+animation-name: brand-animate;
+animation-duration: .7s;
+animation-fill-mode: forwards;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Standard webkit */
+@keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.glyphicon {
+    color: white;
+    padding-right: 3px;
+}
+
+/* Same as regular (override bootstrap default) */
+li.dropdown.navbar-brand > a:focus,
+li.dropdown.navbar-brand:hover, a.dropdown-toggle:hover {
+text-decoration: none;
+font-size: 14.5px;
+color: white;
+background-color: black;
+}
+
+ul.dropdown-menu > li:hover,
+ul.dropdown-menu > li > a:hover {
+  background-color: #474747 !important;
+}
+
+/**************************************************
+  Bootstrap Navbar Collapse
+**************************************************/
+/* Note: on collapse, switch to relative to prevent li overlap */
+.navbar-right > li {
+background-color: black;
+}
+
+li, li.dropdown {
+color: white;
+font-size: 14.5px;
+font-weight: normal;
+position: relative;
+height: 100%;
+text-align: center;
+z-index: 1;
+}
+
+.dropdown-menu {
+padding: 0;
+margin: 0;
+}
+
+li.dropdown.navbar-brand > li,
+.dropdown-menu > li {
+padding: 3px;
+text-align: left;
+border: solid 2px white;
+border-bottom: none;
+}
+
+li.dropdown.navbar-brand > li > a,
+.dropdown-menu > li > a {
+padding: 5px 3px;
+border-left: none;
+}
+
+.dropdown-menu > li:last-child {
+border-bottom: solid 2px white;
+}
+
+/* Make navbar font smaller on firefox */
+@-moz-document url-prefix() {
+  li, li.dropdown {
+    font-size: 14px;
+  }
+}
+
+.navbar-nav li {
+border-left: 1px solid white;
+}
+
+.navbar-right li:first-child {
+border-left: 2px solid white;
+}
+
+.navbar-nav li > a {
+  color: white;
+  line-height: 22px;
+}
+
+.navbar-nav li,
+.navbar-nav li > a {
+min-height: 50px;
+}
+
+.navbar-nav li.active, .navbar-nav .active a {
+background-color: #474747;
+}
+
+.navbar-right > .open .dropdown-menu > li,
+.navbar-right > .open .dropdown-menu > li > a {
+  min-height: 15px;  /* drop it back down from 50px above */
+  padding-bottom: 0;
+}
+
+.navbar-right > .open .dropdown-menu > li:hover,
+.navbar-right > .open .dropdown-menu > li:hover {
+  color: white;
+  background-color: gray;
+}
+
+.navbar-nav li:hover, .navbar-nav li > a:hover {
+background-color: gray;
+}
+
+.nav .open>a, .nav .open>a:focus {
+background-color: gray;
+}
+
+.page-name-text {
+  color: white;
+}
+
+.exports, .function-declare, .console-log, .var {
+color: #66D9EF;
+font-style: italic;
+}
+
+.period, .argument-parens, .brackets, .variable-name, .html-tag-equal {
+color: white;
+}
+
+.equals, .new, .return, .rocket, .if-else-while-etc {
+color: #F92672;
+}
+
+.string, .argument {
+color: #FD971F;
+}
+
+.argument {
+font-style: italic;
+}
+
+.number {
+color: #AA7395;
+}
+
+.property, .attr-tag, .jQuery-cash, .object, .method {
+color: #A6E22E;
+}
+
+.navbar-toggle {
+border-color: white;
+}
+
+.navbar-toggle:hover {
+background-color: #aaaaaa;
+}
+
+.navbar-toggle .icon-bar {
+background-color: white;
+}
+
+/******************************************************/
+/*  Manage span.hideAt Class  */
+/******************************************************/
+@media (max-width: 1300px) and (min-width: 768px) {
+span.hideAt1300 {
+display: none;
+}
+}
+
+@media (max-width: 1230px) and (min-width: 768px) {
+span.hideAt1230 {
+display: none;
+}
+}
+
+@media (max-width: 1140px) and (min-width: 768px) {
+span.hideAt1140 {
+display: none;
+}
+}
+
+@media (max-width: 1090px) and (min-width: 768px) {
+span.hideAt1090 {
+display: none;
+}
+}
+
+@media (max-width: 970px) and (min-width: 768px) {
+span.hideAt970 {
+display: none;
+}
+}
+
+@media (max-width: 905px) and (min-width: 768px) {
+span.hideAt905 {
+display: none;
+}
+
+li, li.dropdown {
+font-size: 13px;
+}
+}
+
+@media (max-width: 790px) and (min-width: 768px) {
+span.hideAt790 {
+display: none;
+}
+}
+
+/******************************************************/
+@media (max-width: 767px) {
+span.hideAt1275 {
+display: none;
+}
+
+.navbar-header {
+border-top: solid 1px white;
+}
+li, li.dropdown {
+text-align: left;
+font-size: 14px;
+border-top: solid 2px white;
+}
+
+/* Standard syntax */
+.navbar-brand.dropdown {
+text-align: left;
+padding-left: 2%;
+border: none;
+}
+
+.navbar-right {
+margin-top: 0;
+margin-bottom: 0;
+}
+}
+
+:link:focus, :visited:focus {
+outline: none;
+background-color: black;
+color: white;
+opacity: .7;
+}
+/******************************************************/
+/*                  Home page styles                 */
+/******************************************************/
+
+/******************************************************/
+/*                  About page styles                 */
+/******************************************************/
+
+
+
+
+</style>

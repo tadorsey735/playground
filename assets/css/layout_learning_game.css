@@ -1,0 +1,16 @@
+.navbar#lockbar {
+  height: 45px;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: bold;
+  background-color: white;
+}
+li {
+  margin: 5px;
+  padding:5px;
+}
+img#lock-pic {
+  max-height: 35px;
+  max-width: 35px;
+}

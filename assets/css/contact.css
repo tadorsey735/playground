@@ -1,0 +1,16 @@
+html,
+
+body {
+  overflow: hidden;
+  background: url('/images/vintage-background-2.png') center center;
+  background-size: cover;
+}
+
+#main {
+  margin-top: 35px;
+  width: 40%;
+}
+
+#text {
+  color: green;
+}

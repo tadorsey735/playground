@@ -1,0 +1,180 @@
+html,
+
+body {
+  background: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.animation-corner {
+  display: none;
+  position: absolute;
+}
+.animation-corner.top-left {
+    float: left;
+    top: 60px;
+    left: 40px;
+}
+.animation-corner.top-right {
+    float: right;
+    top: 60px;
+    right: 40px;
+}
+.animation-corner.bottom-left {
+    float: left;
+    top: 450px;
+    left: 40px;
+    margin-bottom:10px;
+}
+.animation-corner.bottom-right {
+    float: right;
+    top: 440px;
+    right: 40px;
+    margin-bottom:10px;
+}
+
+.celebration-gif {
+  height:100px;
+}
+
+#center-celebration-row {
+  display: none;
+}
+
+.celebration-gif-container {
+  position: relative;
+  max-width: 78%;
+  max-height: 35%;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+
+.center-celebration-gif {
+  max-height: 400px;
+}
+
+.word-pic-container {
+  position: relative;
+  max-width: 78%;
+  max-height: 35%;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+
+.word-pic {
+  max-height: 200px;
+}
+
+.letters-span-container {
+  position: relative;
+  max-width: 78%;
+  max-height: 30%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 85px;
+  text-align: center;
+}
+
+.letter {
+  color: black;
+  border-bottom: 5px solid white;
+}
+
+.letter, .hidden-letter, .revealed-letter {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.highlight {
+  visibility: visible !important;;
+  color: red !important; /* This must override .hidden-letter */
+  font-weight: bold;
+}
+
+
+.letter {
+  border-bottom: 5px solid white;
+}
+
+.hidden-letter {
+  visibility: hidden;
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+
+#letter-bang, #spanish-bang {
+  visibility: hidden;
+  color: black;
+  border-bottom: 5px solid white;
+}
+
+.revealed-letter {
+  visibility: visible;
+  color: black;
+  border-bottom: 5px solid white;
+}
+
+.blink {
+  margin-right: 1px;
+  visibility: visible;  /* Need to make the span visible so the border can be seen */
+  font-weight: bold;
+  -webkit-animation-name: blink-green;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: blink-green;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes blink-green {
+  0%   { border-bottom: 5px solid green; }
+  50%  { border-bottom: 5px solid white; }
+  100% { border-bottom: 5px solid green; }
+}
+@keyframes blink-green {
+  0%   { border-bottom: 5px solid green; }
+  50%  { border-bottom: 5px solid white; }
+  100% { border-bottom: 5px solid green; }
+}
+
+@media (max-width: 767px) {
+  .center-pic {
+    margin: 5px;
+  }
+  .word-pic {
+    max-width: 110px;
+    max-height: 100px;
+  }
+  .word-pic-container {
+    position: relative;
+    max-width: 50%;
+    max-height: 20%;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+  }
+  .letters-span-container {
+    font-size: 50px;
+  }
+  .letter, .hidden-letter {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .animation-corner#bottom-left,
+  .animation-corner#bottom-right {
+    top: 300px;
+  }
+  .animation-corner#bottom-right {
+    top: 300px;
+  }
+  .celebration-gif {
+    height:75px;
+  }
+}

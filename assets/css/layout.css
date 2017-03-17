@@ -1,0 +1,148 @@
+body {
+  font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif ;
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #232526 , #414345); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #232526 , #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+nav.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  background-color: black;
+	border-bottom: 2px solid white;
+  font-family: avenir next, helvetica, alto, century gothic, sans-serif;
+}
+/**************************************************
+  Bootstrap Navbar Brand
+**************************************************/
+.navbar-brand, ul.dropdown-menu {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  float: left;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  /* Prevent annoying glyph load flicker */
+  -webkit-animation-name: brand-animate; 
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: brand-animate;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+/* Same as regular (override bootstrap default) */
+.navbar-brand:hover {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+}
+/**************************************************
+  Bootstrap Navbar Collapse
+**************************************************/
+.navbar-nav {
+  font-size: 14px;
+}
+/* Otherwise it's pushed right a little for some reason */
+/* Note: on collapse, switch to relative to prevent li overlap */
+.navbar-right > li {
+  color: white;
+  background-color: #202020;
+}
+
+li, li.dropdown {
+  font-size: 14px;
+  font-weight: normal;
+  position: relative;
+  height: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.dropdown-menu {
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu > li {
+  text-align: left;
+  border: solid 2px white;
+  border-bottom: none;
+}
+.dropdown-menu > li:last-child {
+  border-bottom: solid 2px white;
+}
+.navbar-nav li {
+  border-right: 1px solid white;
+}
+
+.navbar-left li:first-child, .navbar-right li:first-child {
+  border-left: 1px solid white;
+}
+
+.navbar-nav li > a {
+  color: white;
+  line-height: 18px;
+}
+
+.navbar-nav .active a {
+  background-color: #646464;
+}
+
+
+.open .dropdown-menu > li,
+.open .dropdown-menu > li > a {
+  background-color: #646464;
+}
+
+.open .dropdown-menu > li:hover,
+.open .dropdown-menu > li > a:hover {
+  color: white;
+  background-color: #474747;
+}
+
+.navbar-nav li:hover,
+.navbar-nav li > a:hover {
+  color: white;
+  background-color: #474747;
+}
+
+.nav .open>a, .nav .open>a:focus {
+  color: white;
+  background-color: #474747;
+}
+
+.navbar-toggle {
+  border-color: white;
+}
+.navbar-toggle:hover {
+  background-color: #aaaaaa;
+}
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+@media (max-width: 767px) {
+  li, li.dropdown {
+    border-top: solid 2px white;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
+  .navbar-brand {
+    text-align: left;
+    padding-left: 2%;
+    border: none;
+  }
+  .navbar-nav {
+    border: solid 1px white;
+  }
+  .navbar-right {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

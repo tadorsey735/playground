@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  .row-fluid.about-page#main-container
+    .row-fluid.top-row
+      .col-sm-3#left-top-col
+      .col-sm-6#center-top-col
+        .page-header-container
+          h1
+      .col-sm-3#right-top-col
+    .row-fluid.main-row
+      .col-sm-6
+        .panel.panel-default.animation#about-page-panel
+          .panel-body#about-page-panel-body
+            h2 What's it all about?
+            hr#about-page-panel-body-divider
+            p This site is me having fun. It's built using Node.js with Express. Pug
+              | (the view template engine formally known as Jade) renders the pages and I'm
+              | using MySQL on the backend. So it's a MySQLEN stack if you will. The website
+              | theme is customizable, you can switch between Monokai (my favorite and the default right now, but a
+              | bit heavy on the animations for the blog so might annoy some), Dark (which
+              | serves very quickly because it ignores background images and cuts out most of the
+              | animations), and Light, which I think is a nice middle ground. You can switch
+              | between them via the top-left brand dropdown. Preferred theme persists across
+              | the site via a cookie. Cooookie!
+            p The main two componenets of the site are the Blog and the Learning Games. The 
+              a(href='/projects/learning-app') Learning Games
+              |  I've ported from a couple JavaScript apps I wrote for my two
+              | year-old last year. The games are a perfect use-case for a front-end framework
+              | like React or Angular, so at some point I'd like to incorporate Angular 2.0.
+              | For now they're just plain old JavaScript SPAs.
+      .col-sm-2
+      .col-sm-4
+        .panel.panel-default.animation#about-author-panel
+          .panel-body#about-author-panel-body
+            h2 Who made this?
+            hr#about-author-panel-body-divider
+            p Tim Dorsey made this.
+
+    script.
+      var resizing = false;
+      function setMainRowHeight() {
+        $("#main-container").height($(window).height() - 53);
+        resizing = false;
+        console.log("Handler for .resize() called" );
+      }
+      $( document ).ready(setMainRowHeight());
+      $( window ).resize(function() {
+        if (resizing === false) {
+          resizing = true;
+          setTimeout(function() {
+            setMainRowHeight()
+          }, 200);
+        }
+      });

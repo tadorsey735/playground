@@ -1,0 +1,128 @@
+doctype html
+html
+  head
+    if header.page_name == "blog_article"
+      title= 'Blog: ' + article.title
+    else
+      title= header.title
+    meta(charset='utf-8')
+    link(href='/images/favicon.ico', rel='shortcut icon')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel="stylesheet", href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel="stylesheet", href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.css')
+    //- any additional css specified in controller
+    each css in header.css
+      link(rel='stylesheet' href=css)
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    //- any additional client-side js specified in controller
+    each script in header.js
+      script(src=script)
+  body
+    header
+      nav.navbar(role='navigation')
+          .navbar-header
+            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            li.dropdown.navbar-brand
+              a.dropdown-toggle(href='javascript:void(0)', data-toggle='dropdown', style='margin:0;padding:0;')
+                span.hideAt790.glyphicon.glyphicon-grain
+                span.brand-text
+                  span.variable-name ground
+                  span.period .
+                  span.method Play
+                  span.argument-parens (
+                  span.hideAt905.string "Dmitri"
+                  span.argument-parens )
+                  span.normal-nav-text#brand-text Dmitri's Playground
+                ul.dropdown-menu(role='menu')
+                  li
+                    - var onClickStr1 = "nav_theme_control.change_nav_theme('light', '" + nav_theme + "', '" + header.page_name + "')"
+                    a(href='javascript:void(0)', onclick=onClickStr1, style='color:black;background-color:white;')
+                      span.glyphicon.glyphicon-check(style=nav_theme!='light'?'visibility:hidden;color:black;':'visibility:visible;color:black;')#light-nav-check
+                      span Light Theme
+                  li
+                    - var onClickStr2 = "nav_theme_control.change_nav_theme('dark', '" + nav_theme + "', '" + header.page_name + "')"
+                    a(href='javascript:void(0)', onclick=onClickStr2, , style='color:white; background-color:black;')
+                      span.glyphicon.glyphicon-check(style=nav_theme!='dark'?'visibility:hidden;color:white;':'visibility:visible;color:white;')#dark-nav-check
+                      span Dark Theme
+                  li
+                    - var onClickStr3 = "nav_theme_control.change_nav_theme('monokai', '" + nav_theme + "', '" + header.page_name + "')"
+                    a(href='javascript:void(0)', onclick=onClickStr3, , style='background-color:black;')
+                      span.glyphicon.glyphicon-check(style=nav_theme!='monokai'?'visibility:hidden;color:white;':'visibility:visible;color:white;')#monokai-nav-check
+                      span(style='color: #A6E22E;') theme
+                      span(style='color: white;') (
+                      span(style='color: #FD971F;') "Monokai"
+                      span(style='color: white;') ) 
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li(class=header.active_nav=='Home'?'active':undefined)
+                a(href='/')
+                  span.page-name-text Home
+                  span.argument-parens (
+                  span.argument req
+                  span.period , 
+                  span.argument res
+                  span.argument-parens )
+              li(class=header.active_nav=='Blog'?'active':undefined)
+                a(href='/blog')
+                  span.method read
+                  span.argument-parens ( 
+                  span.page-name-text Blog
+                  span.argument-parens  )
+              li(class=header.active_nav=='About'?'active':undefined)
+                a(href='/about')
+                  span.var var 
+                  span.page-name-text About 
+                  span.hideAt1140
+                    span.rocket => 
+                    span.brackets {
+                  span.hideAt1140
+                    span.brackets }
+              li(class=header.active_nav=='Contact'?'active':undefined)
+                a(href='/contact')
+                  span.new new 
+                  span.page-name-text Contact 
+              li.dropdown(class=header.active_nav=='Projects'?'active':undefined)
+                a.dropdown-toggle(href='javascript:void(0)', data-toggle='dropdown')
+                  span.dropdown-title
+                    span.string "toggle( 
+                    span.page-name-text Projects
+                    span.string  )"
+                ul.dropdown-menu(role='menu')
+                  li
+                    a(href='/projects/learning-app')
+                      span.variable-name Projects[
+                      span.number 0
+                      span.brackets ] 
+                      span.equals = 
+                      span.string "Learning Games";
+                      span.normal-nav-text Project: Learning Games
+                  li
+                    a(href='/projects/story-app')
+                      span.variable-name Projects[
+                      span.number 1
+                            span.brackets ] 
+                      span.equals = 
+                      span.string "Story App";
+                      span.normal-nav-text Project: The Story App
+    block header
+    span.navbar-styles
+      if nav_theme == "dark"
+        include ./navbar_styles/navbar_dark.html
+      else if nav_theme == "monokai"
+        include ./navbar_styles/navbar_monokai.html
+      else
+        include ./navbar_styles/navbar_light.html
+    style.
+      @media (max-width: 767px) {
+        li.dropdown.navbar-brand {
+          z-index: 3;
+        }
+      }
+    script.
+      $( document ).ready(nav_theme_control.init_nav_theme('#{nav_theme}'));
+    block content

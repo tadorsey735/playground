@@ -1,0 +1,103 @@
+html,
+
+body {
+  background: url('/images/underwater-medium-shot-min.png') center center;
+  background-size: cover;
+  overflow: hidden;
+}
+.navbar {
+  z-index:3;
+}
+
+.hide-for-now {
+  display: none;
+}
+.invisible-for-now {
+  visibility: hidden;
+}
+
+#main-container {
+  z-index:2;
+  display:block;
+  margin-bottom: 1px;
+  padding-bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.center-container {
+  height: 0;
+  text-align: center;
+  padding: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color:white;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-weight: bold;
+  font-family: 'Life Savers';
+}
+
+.page-header-container {
+  opacity: 0;
+}
+
+.center-container #header-text {
+  font-size: 50px;
+}
+.center-container #header-sub-text {
+  color: white;
+  font-size: 20px;
+  font-family: 'Cinzel Decorative';
+}
+
+.top-left, .top-right {
+  margin:0;
+  padding: 0;
+}
+
+.blog-panel, .learning-panel {
+  opacity: 0;
+  border: solid 2px white;
+  border-radius: 10px;
+  background: black;
+}
+
+.blog-panel:hover,
+.learning-panel:hover,
+.blog-panel > a:hover,
+.learning-panel > a:hover {
+  opacity: .8;
+  text-decoration: none;
+}
+
+#filler-text-header {
+  padding: 20px 10px 0px 10px;
+  color: red;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Cinzel Decorative';
+}
+
+#filler-text-body {
+  padding: 0px 10px 10px 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: ‘Courier New’, Courier, monospace;
+}
+
+
+@media screen and (max-width: 767px) {
+  .center-container #header-text {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 32px;
+  }
+  .center-container #header-sub-text {
+    color: white;
+    font-size: 20px;
+    font-family: 'Cinzel Decorative';
+  }
+}

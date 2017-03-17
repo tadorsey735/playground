@@ -1,0 +1,275 @@
+extends layout
+
+block content
+  .container-fluid
+    .row-fluid.content.article-page#main-row
+      .col-sm-9#main-col
+        .article-container.hide-for-now.animation
+          .row-fluid.container-fluid
+            .col-sm-12.article-header.hide-for-now.animation
+              .article-date
+                span.article-publish-date= article.date_published.formatted
+              if article.date_published.formatted != article.date_edited.formatted
+                .article-date
+                  span Edited: 
+                  span.article-edited-date= article.date_edited.formatted
+              hr.article-header-hr
+              span.article-header-text= article.title
+              hr.article-header-hr
+              if article.head_img_src != ""
+                .article-header-img-container
+                  img(src=article.head_img_src)
+              .row-fluid.container-fluid
+                .col-sm-12.article-header.hide-for-now.animation#tldr-dropdown-container
+                  button.btn.btn-success#tldr-button(type='button', data-toggle='collapse', data-target='#tldr-list' style="width:100%")
+                    span.glyphicon.glyphicon-collapse-down#tldr-collapse-icon
+                    | tl;dr:
+                  .panel-collapse.collapse#tldr-list
+                    ul.listgroup
+                      each point in article.tldr_points
+                        li.tldr-point !{point}
+          .row-fluid.container-fluid
+            .col-sm-12.article-body.hide-for-now.animation
+              each piece in pieces
+                if piece.type == "section"
+                  hr.divider#article-piece-top-divider
+                  p.article-piece-header= piece.sectionHeader
+                  hr.divider#article-piece-bottom-divider
+                  br
+                  each item in piece.content
+                    p.article-piece-text !{item}
+                    br
+                else if piece.type == "section-header"
+                  hr.divider#article-piece-top-divider
+                  p.article-piece-header= piece.content
+                  hr.divider#article-piece-bottom-divider
+                else if piece.type == "image"
+                  .article-piece-img-container: img.article-piece-img(src=piece.content)
+                else if piece.type == "text"
+                  p.article-piece-text !{piece.content}
+                else if piece.type == "drop"
+                  button.btn.btn-success.article-drop-button(type='button', data-toggle='collapse', id="piece-drop", data-target="#"+piece.collapseTag, style="width:100%")
+                    span= piece.dropHeaderText
+                  .panel-collapse.collapse.article-drop-list(id=piece.collapseTag)
+                    ul.listgroup
+                      each item in piece.content
+                        li.article-drop-li= item
+      .col-sm-3#right-col
+        .panel.panel-default.animation#right-panel
+          .panel-body#right-panel-body
+            h2
+              //-span.fa.fa-cogs(aria-hidden="true")
+              span.text All Posts
+            hr#right-panel-body-divider
+            ul.tree.tree-years
+              each yr in Object.keys(right_panel_mo_yr)
+                li.tree.tree-year.active(id=yr)
+                  a(href='javascript:void(0)', id=yr)
+                    span(class="fa fa-chevron-right rotate" id=yr)
+                    span= yr
+                  ul.tree-months(id=yr)
+                    each mo in Object.keys(right_panel_mo_yr[yr])
+                      li.tree.tree-month(class=yr, id=yr+mo)
+                        a(href='javascript:void(0)', id=yr+mo)
+                          span(class="fa fa-chevron-right rotate" id=yr+mo)
+                          span= mo
+                          span  ( 
+                          span= right_panel_mo_yr[yr][mo].length.toString() 
+                          span  )
+                        ul.tree-articles(id=yr+mo)
+                          each articleIndex in right_panel_mo_yr[yr][mo]
+                            if date_sorted_articles[articleIndex].id == article.id
+                              li.tree-article.current-article(class=yr+mo)
+                                a.current-article(href='javascript:void(0)', onClick="")
+                                  span.current-article= date_sorted_articles[articleIndex].title
+                            else
+                              li.tree-article(class=yr+mo)
+                                a(href='javascript:void(0)', onClick="transitionToArticle(" + date_sorted_articles[articleIndex].id + ")")
+                                  span= date_sorted_articles[articleIndex].title
+            hr#right-panel-body-divider
+            .right-panel-footer
+              .right-panel-footer-upper-half
+                .rubberband-ball-img-container
+                  img(src='/images/rubberband_ball-2-min.png')
+              .right-panel-footer-lower-half
+                span What's 
+                span.mind-space#0 [on / 
+                span.mind-space#1 in / 
+                span.mind-space#2 beside / 
+                span.mind-space#3 below / 
+                span.mind-space#4 aside / 
+                span.mind-space#5 above / 
+                span.mind-space#6 outside] 
+                span your mind?
+
+      
+      script.
+        $( document ).ready(init_right_panel('#{article.date_published.year_int}', '#{article.date_published.month_string}'));
+        
+        var initComplete = false;
+        $( document ).ready( function() {
+          if (nav_theme_control.get_current_nav() !== 'light') { 
+            $('.article-body > hr').eq(0).css('display', 'none');
+            $('.article-body > p').eq(0).css('padding-top', '20px');
+          }
+          setMainRowHeight();
+          // unless it's monokai theme just stick to webkit animations
+          if (nav_theme_control.get_current_nav() !== 'monokai') { quickArticleInit(); }
+          else { transitionToBlogArticle(); }
+        });
+        var resizing = false;
+        $( window ).resize(function() {
+          if (resizing === false) {
+            resizing = true;
+            setTimeout(function() {
+              setMainRowHeight()
+            }, 200);
+          }
+        });
+        function quickArticleInit() {
+          $("#right-panel").removeClass("animation").addClass("no-animation");
+          $(".article-container").removeClass("hide-for-now animation").addClass("no-animation");
+          $(".article-header").removeClass("hide-for-now animation").addClass("no-animation");
+          $(".article-body").removeClass("hide-for-now animation").addClass("no-animation");
+        }
+        function setMainRowHeight() {
+          $("#main-row").height($(window).height() - 53);
+          resizing = false;
+        }
+        var animatingTransition = false;
+        function transitionToBlogArticle() {
+          animatingTransition = true;
+          var articleContainerHeight = 1;
+          // for bootstrapped col collapse
+          if ($(window).width() < 768) {
+            articleContainerHeight = $(window).height() - 53;
+          }
+          // for one row of two articles where y=window width and x=desired container height:
+          //   f(x) = 4.5317x - 776.29
+          else {
+            articleContainerHeight = ($(window).width() + 1500.00);
+          }
+          // let page load for a second before kicking on transition effects
+          setTimeout(function () {
+            $(".article-container").removeClass("hide-for-now").animate(
+              { height: articleContainerHeight },
+            1500);
+            setTimeout( function() {
+              $(".article-header").fadeIn( 1000 );
+              $(".article-body").fadeIn( 1000 );
+              setTimeout( function() {
+                initComplete = true;
+                animatingTransition = false;
+              }, 1200);
+            }, 1500);
+          }, 1000);
+        }
+        // right panel collapse/expand currently not implemented
+        function collapseRightPanel() {
+          $('#right-col').addClass('hide-for-now').slideUp(500);
+          $('#right-col').removeClass('col-sm-3').addClass('col-sm-1');
+          setTimeout( function() {
+            $('#main-col').addClass('smooth-right-slide');
+            $('#main-col').toggleClass('col-sm-9 col-sm-11');
+          }, 600);
+          setTimeout( function() {
+              $('#right-panel').removeClass('hide-for-now').fadeIn("slow");
+          }, 900);
+        }
+        function expandRightPanel() {
+          $('#slide-out-panel-btn-container').removeClass('hide-for-now').animate(500);
+          $('#right-col').removeClass('col-sm-1').addClass('col-sm-3').animate(1000);
+          $('#right-col').addClass('hide-for-now').slideDown(1200).animate(
+            {opacity: .8},
+          900);
+          $('#main-col').removeClass('.col-sm-11').addClass('.col-sm-9').animate(800);
+        }
+        //*/
+        // for tl;dr glyphicon
+        $(document).ready(function(){
+          $("#tldr-list").on("hide.bs.collapse", function(){
+            $(".btn#tldr-button").html('<span class="glyphicon glyphicon-collapse-down"></span> tl;dr:');
+          });
+          $("#tldr-list").on("show.bs.collapse", function(){
+            $(".btn#tldr-button").html('<span class="glyphicon glyphicon-collapse-up"></span> tl;dr:');
+          });
+        });
+        function transitionToArticle(id) {
+          if (nav_theme_control.get_current_nav() !== 'monokai') {
+            window.location.href = "/blog/article/" + id.toString();
+          }
+          else {
+            animatingTransition = true;
+            $('#right-col').fadeOut(700);
+            $(".blog-header").css('visibility', 'hidden').animate(
+              {opacity: 0},
+            700 );
+            $(".articles").css('visibility', 'hidden').animate(
+              {opacity: 0},
+            700);
+            setTimeout( function() {
+              $(".content").slideUp(1500);
+            }, 800);
+            // slide the single-article container down
+            setTimeout( function() {
+              window.location.href = "/blog/article/" + id.toString();
+            }, 1500);
+          }
+        }
+        // this routine is initiated by nav_control so animations can run for monokai
+        var blog_js = {
+          quickArticleInit: function() {
+            $("#right-panel").removeClass("animation").addClass("no-animation");
+            $(".articles-container").removeClass("hide-for-now animation").addClass("no-animation");
+            $(".blog-header").removeClass("hide-for-now animation").addClass("no-animation");
+            $(".content").find($(".articles")).removeClass("hide-for-now animation").addClass("no-animation");
+            $(".content").find($(".article-img-container")).addClass("ready-to-click");
+          },
+          switch_to_monokai_ready: function() {
+            // basically undo quick init
+            $("#right-panel").removeClass("no-animation").addClass("animation");
+            $(".articles-container").removeClass("no-animation").addClass("hide-for-now animation");
+            $(".blog-header").removeClass("no-animation").addClass("hide-for-now animation");
+            $( ".content").find($(".articles")).removeClass("no-animation").addClass("hide-for-now animation");
+            $( ".content").find($(".article-img-container")).removeClass("ready-to-click");
+          },
+          monokai_styles: function(htmlStyles, oldTheme, newTheme) {
+            blog_js.switch_to_monokai_ready();
+            $('.navbar-styles').empty().append(htmlStyles);
+            // set the visible check in the brand dropdown to current theme
+            $('#' + oldTheme + '-nav-check').css("visibility", "hidden");
+            $('#' + newTheme + '-nav-check').css("visibility", "visible");
+            // kick off ???
+            transitionToBlogArticle();
+          },
+        };
+        $(document).on('click', 'a#outsideLink', function(e){ 
+          e.preventDefault(); 
+          var url = $(this).attr('href'); 
+          window.open(url, '_blank');
+        });
+
+
+        /*
+              $( document ).ready( function() {
+                $(".content").find($(".mind-space")).addClass("hide-for-now");
+                mindControl(0);
+              });
+              function mindControl(idInt) {
+                if (idInt === 0) {
+                  $(".mind-space#6").addClass("hide-for-now");
+                }
+                else {
+                  $(".mind-space#" + (idInt - 1).toString()).addClass("hide-for-now");
+                }
+                $(".mind-space#" + idInt.toString()).removeClass("hide-for-now");
+                if (idInt === 6) {
+                  setTimeout( function() { mindControl(0) }, 1000);
+                }
+                else {
+                  idInt++;
+                   setTimeout( function() { mindControl(idInt) }, 1000);
+                }
+              }
+              */
+        

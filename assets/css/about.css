@@ -1,0 +1,74 @@
+html,
+
+body {
+  background: url('/images/cosmos-medium-shot-min.png') center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.navbar {
+  z-index:3;
+}
+
+#main-container {
+  z-index:2;
+  display:block;
+  margin-bottom: 1px;
+  padding-bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.top-row {
+  margin-top: 12px;
+}
+.page-header-container {
+  margin-bottom: 20px;
+}
+
+.page-header-container,
+#about-page-panel-body {
+  padding-bottom: 15px;
+}
+
+.page-header-container {
+  color: white;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+.main-row {
+  margin-bottom: 20px;
+}
+#about-page-panel,
+#about-author-panel {
+  opacity: .70;
+  color: white;
+  background: black;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+#about-page-panel-body h2,
+#about-author-panel-body h2 {
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+  font-family: Copperplate,Copperplate Gothic Light,fantasy;
+}
+
+#about-page-panel-body-divider,
+#about-author-panel-body-divider {
+  display: block;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}

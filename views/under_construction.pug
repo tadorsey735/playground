@@ -1,0 +1,78 @@
+extends layout
+
+block content
+  .row-fluid
+    .col-sm-2
+    .col-sm-8.main
+      span.main#under-construction
+    .col-sm-2
+  script.
+    var str1 = "... this page is under construction ...";
+    infinite();
+    function infinite() {
+      $("#under-construction").writeText(str1, 100);
+      setTimeout(function() {
+        $("#under-construction").text("");
+        var str1Chars = str1.split("");
+        for (var i = 0; i < str1Chars.length; i++) {
+          $('<span />', {
+            id: "under-construction_" + i.toString(),
+            color: "green",
+            text: str1Chars[i]
+          }).appendTo('span.main');
+          var pos = $("#under-construction_" + i.toString()).position();
+          var width = $("#under-construction_" + i.toString()).width();
+          $("#under-construction_" + i.toString()).css("position", "absolute");
+          $("#under-construction_" + i.toString()).css("left", pos.left+(i*width-12));
+          $("#under-construction_" + i.toString()).css("top", pos.top);
+          $("#under-construction_" + i.toString()).css("height", $(window).height()-pos.top);
+        }
+        var buff = [];
+        burnEm(buff, str1.length);
+      }, str1.length*130);
+      setTimeout(function() {
+        $("#under-construction").text("");
+        switchUpStr();
+        infinite();
+      }, 15000);
+    }
+    function burnEm(knocked, len) {
+      for (var j = 0; j < len/2; j++) {
+        if (knocked.length === str1.length) {
+          knocked = [];
+          burnEm(knocked, str1.length)
+          return;
+        }
+        var index = helper.generateRandomNo(0, (str1.length-1));
+        while (helper.checkIfPresent(knocked, index)) {
+          index = helper.generateRandomNo(0, (str1.length-1));
+        }
+        if((index%3) === 0) {
+           $("#under-construction_"+index.toString()).addClass("burnout1");
+        }
+        else if ((index%3) === 1) {
+           $("#under-construction_"+index.toString()).addClass("burnout2");
+        }
+        else {
+           $("#under-construction_"+index.toString()).addClass("burnout3");
+        }
+        //var index = len - 1;
+        //$("#under-construction_"+index.toString()).addClass("burnout");
+        knocked.push(index);
+        len--;
+      }
+      setTimeout(function() {
+        burnEm(knocked, len)
+      }, 700);
+    }
+    function switchUpStr() {
+      if (str1 === "... this page is under construction ...") {
+        str1 = "... everything is falling apart ...";
+      }
+      else if (str1 === "... everything is falling apart ...") {
+        str1 = "abcdefghijklmnopqrstuvwxyz";
+      }
+      else {
+        str1 = "... this page is under construction ...";
+      }
+    }

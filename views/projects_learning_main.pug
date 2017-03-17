@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .container-fluid
+    .container#game-area(style="border-radius:7px; background-color:white;")
+      .row-fluid.content
+        .container(style="width:60%;")
+          img(src="/images/learning-game-min.png" style="border-radius:7px; margin-top:10px; box-shadow: 10px 10px 5px grey;")
+      br
+      .row-fluid.content(style="margin-top:20px;margin-bottom:20px;")
+        .col-sm-6#game1(style="color: black")
+          .container(style="width:90%;")
+            .well(style="box-shadow: 10px 10px 5px grey;")
+              a(href="/projects/learning-app/spelling")
+                img(src="/images/spelling-game-min.png" class="game-img" style="border-radius:7px;")
+              <hr>
+              p Description of the game. Maybe a dropdown for additional info?
+        .col-sm-6#game2(style="color: black")
+          .container(style="width:90%;")
+            .well(style="box-shadow: 10px 10px 5px grey;")
+              a(href="/projects/learning-app/memory")
+                img(src="/images/memory-game-min.png" class="game-img" style="border-radius:7px;")
+              <hr>
+              p Description of the game. Maybe a dropdown for additional info?

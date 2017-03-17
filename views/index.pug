@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  .row-fluid.home-page#main-container
+    .col-sm-12
+      .row-fluid.top-row(style="display:inline")
+        .col-sm-3.top-left
+        .col-sm-6.center-container.hide-for-now
+          .page-header-container.invisible-for-now#home
+            p: span#header-text
+              span(style="color:orange") Welcome 
+              span(style="color:blue") to 
+              span(style="color:green") Dmitri's 
+              span(style="color:red") Playground
+            p: span#header-sub-text
+        .col-sm-3.top-right
+      .row-fluid(style="display:inline-block")
+        .col-sm-4
+          .blog-panel.invisible-for-now: a(href="/blog")
+            p#filler-text-header Shoeless Shoe Strings
+            hr
+            p#filler-text-body Check out the blog. It chronicles some of the development for this site.
+        .col-sm-4
+        .col-sm-4
+          .learning-panel.invisible-for-now: a(href="/projects/learning-app")
+            p#filler-text-header Learning Games
+            hr
+            p#filler-text-body A collection of games I made for my 2 year-old. Fun for all ages!
+    script.
+      var resizing = false;
+      function setMainRowHeight() {
+        $("#main-container").height($(window).height() - 53);
+        resizing = false;
+      }
+      $( document ).ready(function() {
+        setMainRowHeight();
+        animatePage();
+      });
+      $( window ).resize(function() {
+        if (resizing === false) {
+          resizing = true;
+          setTimeout(function() {
+            setMainRowHeight()
+          }, 200);
+        }
+      });
+      function animatePage() {
+        setTimeout(function () {
+          $(".center-container").removeClass('hide-for-now').animate(
+            { height: 275 },
+          1000);
+          setTimeout(function () {
+            $(".page-header-container").removeClass('invisible-for-now').animate(
+              { opacity: 1 },
+            1000);
+          }, 1200);
+          setTimeout(function () {
+            writeHeaderSubText();
+          }, 2500);
+          animateSidePanels();
+        }, 1000);
+      }
+      function writeHeaderSubText() {
+        var subStr = "Are we there yet?";
+        $('#header-sub-text').writeText(subStr, 100);
+      }
+      function animateSidePanels() {
+          setTimeout(function () {
+            $(".blog-panel").removeClass('invisible-for-now').animate(
+              { opacity: 1 },
+            1000);
+            $(".learning-panel").removeClass('invisible-for-now').animate(
+              { opacity: 1 },
+            1000);
+          }, 1200);
+      }

@@ -1,0 +1,72 @@
+extends layout_learning_game
+
+block content
+  script.
+    var cornerCelebrationIndexArray = [];
+    for (var i = 0; i < #{cornerCelebrations.length}; i++) { cornerCelebrationIndexArray.push(i.toString()); }
+    var wrongResponseIndexArray = [];
+    for (var i = 0; i < #{wrongResponses.length}; i++) { wrongResponseIndexArray.push((9000 + i).toString()); }
+  each celebration, index in cornerCelebrations
+    .animation-corner.top-left(id=index.toString())
+      img.celebration-gif(src=celebration.gif)
+    .animation-corner.top-right(id=index.toString())
+      img.celebration-gif(src=celebration.gif)
+    .animation-corner.bottom-left(id=index.toString())
+      img.celebration-gif(src=celebration.gif)
+    .animation-corner.bottom-right(id=index.toString())
+      img.celebration-gif(src=celebration.gif)
+    audio(src=celebration.audio, controls="", style="display:none", id="animation-corner-audio-" + index.toString())
+  each wrongResponse, index in wrongResponses
+    .animation-corner.top-left(id="900" + index.toString())
+      img.celebration-gif(src=wrongResponse.gif)
+    .animation-corner.top-right(id="900" + index.toString())
+      img.celebration-gif(src=wrongResponse.gif)
+    audio(src=wrongResponse.audio, controls="", style="display:none", id="animation-corner-audio-900" + index.toString())
+  #game-container
+    .row-fluid#center-celebration-row
+      .col-sm-12
+        .celebration-gif-container
+          img.center-celebration-gif(src=centerCelebration.gif)
+          audio#center-celebration-audio(src=centerCelebration.audio, controls="", style="display:none")
+    .row-fluid.game
+      .col-sm-12
+        .word-pic-container
+          button(type="button" onclick="makeNoise()")
+            img.word-pic(src=Word.image_src)
+            audio#word-audio(src=Word.audio_src, controls="", style="display:none")
+    .row-fluid.game
+      .col-sm-12
+        .letters-span-container
+          span#spanish-bang ¡
+          each letter, index in Word.chars
+            if index === 0
+              span.letter.highlight(id=index.toString())= letter
+            else
+              span.letter(id=index.toString())= letter
+          span.letter#letter-bang !
+    .row-fluid.game
+      .col-sm-12
+        .letters-span-container
+          span#spanish-bang ¡
+          each letter, index in Word.chars
+            if index === ( Word.chars.length - 1)
+              span.hidden-letter.last-letter(id=index.toString())= letter
+            else
+              span.hidden-letter(id=index.toString())= letter
+          span.letter#letter-bang !
+    .row-fluid.game
+      .col-sm-12
+          each letterSrc, index in  Word.charsAudioSrc
+            audio(src=letterSrc, controls="", style="display:none", id="letter-audio-" + index.toString())
+  script.
+    setCurrentWordData('#{Word.index}');
+    $(document).keypress(function(e){
+      // sorry IE 7-8. I'll try to get back to you guys later ...
+      if ((!e.which) || (!checkingLetter)) {
+        checkingLetter = true;
+        var charBuff = String.fromCharCode(e.which)
+        // 50ms timeout: let's input appear in unlock input, also
+        // prevents rapid keyups from screwing things up in general
+        setTimeout(function() { keypressProcess(charBuff) }, 50);
+      }
+    });

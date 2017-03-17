@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= header.title
+    meta(charset='utf-8')
+    link(href='/images/favicon.ico', rel='shortcut icon')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel="stylesheet", href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel="stylesheet", href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.css')
+    link(rel="stylesheet", href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    //- any additional css specified in controller
+    each css in header.css
+      link(rel='stylesheet' href=css)
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    //- any additional client-side js specified in controller
+    each script in header.js
+      script(src=script)
+  block body
+    header
+      nav.navbar(id="lockbar" role="navigation")
+        .container(style="width:100%")
+          ul.nav.navbar-nav.navbar-right
+            li#unlock-input-li(style="display:none")
+              label(style="padding-right:5px; font-size:15px;") Type 'unlock' in the box: 
+              input#unlock-input(type=text)
+            li#countdown(style="color: red; font-weight: bold; display:none")
+              span#time-remaining
+            li#lock-icon
+              button(type="button" onclick="initUnlockRoutine()")
+                img#lock-pic(src="/images/locked-lock-bONw.png")
+  
+  block content

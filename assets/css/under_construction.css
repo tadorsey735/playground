@@ -1,0 +1,111 @@
+html,
+
+body {
+  background: url('/images/vintage-background-6.png') center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.main, #under-construction {
+  position:fixed;
+  text-align:left;
+  color:green;
+  font-size:40px;
+  font-family: monospace;
+  min-height:80%;
+  top: 200px;
+  left: 100px;
+  margin-top: 40px;
+  margin-left:80px;
+  padding: 5px;
+  transition: ease-in-out;
+}
+#under-construction > span {
+  padding: 5px;
+  margin: 5px;
+  transition: ease-in-out;
+}
+.burnout1{
+  margin-top:500px;
+  width:inherit;
+  text-align:left;
+  transition: ease-in-out;
+  color: lawngreen;
+  z-index: 1;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-name: burn1; 
+  -webkit-animation-duration: 7s;
+  -webkit-animation-fill-mode: forwards;
+  /* Standard Webkit */
+  animation-name: burn1;
+  animation-duration: 7s;
+  animation-fill-mode: forwards;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes burn1 {
+  to { opacity:0.00; margin-top:300px; }
+}
+/* Standard webkit */
+@keyframes burn1 {
+  to { opacity:0.00; margin-top:300px; }
+}
+.burnout2{
+  text-align:left;
+  transition: ease-in-out;
+  color: lawngreen;
+  z-index: 1;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-name: burn2; 
+  -webkit-animation-duration: 7s;
+  -webkit-animation-fill-mode: forwards;
+  /* Standard Webkit */
+  animation-name: burn2;
+  animation-duration: 7s;
+  animation-fill-mode: forwards;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes burn2 {
+  to { opacity:0.00; margin-top:500px; }
+}
+/* Standard webkit */
+@keyframes burn2 {
+  to { opacity:0.00; margin-top:500px; }
+}
+.burnout3{
+  text-align:left;
+  transition: ease-in-out;
+  color: lawngreen;
+  z-index: 1;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-name: burn3; 
+  -webkit-animation-duration: 7s;
+  -webkit-animation-fill-mode: forwards;
+  /* Standard Webkit */
+  animation-name: burn3;
+  animation-duration: 7s;
+  animation-fill-mode: forwards;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes burn3 {
+  to { opacity:0.00; margin-top:250px; }
+}
+/* Standard webkit */
+@keyframes burn3 {
+  to { opacity:0.00; margin-top:250px; }
+}
+
+@media (max-width: 950px) {
+  #under-construction {
+    font-size: 26px;
+    padding-left: 2px;
+    margin-left: 3px;
+  }
+}
+
+@media (max-width: 767px) {
+  #under-construction {
+    font-size: 18px;
+    padding-left: 0;
+    margin-left: 1px;
+  }
+}

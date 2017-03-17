@@ -1,0 +1,366 @@
+<style type="text/css">
+nav.navbar {
+  opacity: 1;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.normal-nav-text {
+  color: black;
+}
+
+/**************************************************
+  Bootstrap Navbar Brand
+**************************************************/
+li.dropdown.navbar-brand, ul.dropdown-menu {
+  float: left;
+  list-style: none;
+  font-weight: bold;
+  font-size: 16px;
+  /* Prevent annoying glyph load flicker */
+  -webkit-animation-name: brand-animate; 
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: brand-animate;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+#brand-text {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Standard webkit */
+@keyframes brand-animate {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.glyphicon {
+    color: black;
+    padding-right: 3px;
+}
+
+/* Same as regular (override bootstrap default) */
+li.dropdown.navbar-brand > a:focus,
+li.dropdown.navbar-brand:hover, a.dropdown-toggle:hover {
+text-decoration: none;
+color: black;
+background-color: white;
+}
+
+.navbar-brand > .dropdown-menu {
+  padding: 0;
+  margin: 0;
+  border: solid 2px black;
+}
+
+.navbar-brand > ul.dropdown-menu > li {
+  border: 1px solid white;
+}
+.navbar-brand > ul.dropdown-menu > li:first-child {
+  border: 1px solid black;
+}
+/**************************************************
+  Bootstrap Navbar Collapse
+**************************************************/
+.navbar-nav {
+  font-size: 16px;
+  font-weight: normal;
+}
+.navbar-collapse {
+	margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* Otherwise it's pushed right a little for some reason */
+/* Note: on collapse, switch to relative to prevent li overlap */
+.navbar-right > li {
+  color: black;
+  background-color: white;
+	margin-bottom: 0;
+  padding-bottom: 0;
+  min-width: 100px;
+}
+
+li, li.dropdown {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+.navbar-right .dropdown-menu {
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu > li {
+  text-align: left;
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.dropdown.navbar-brand > li,
+.dropdown-menu > li {
+  text-align: left;
+  border-bottom: none;
+}
+
+li.dropdown.navbar-brand > li > a {
+  border-left: none;
+  font-size: 14.5px;
+}
+
+.navbar-nav li > a {
+  color: black;
+  line-height: 22px;
+}
+
+.navbar-nav li,
+.navbar-nav li > a{
+  min-height: 50px;
+}
+
+.navbar-nav .active a {
+  color: white;
+  background-color: #646464;
+}
+
+.navbar-nav li:hover,
+.navbar-nav li > a:hover {
+  color: white;
+  background-color: gray;
+}
+
+.navbar-right > .open .dropdown-menu > li,
+.navbar-right > .open .dropdown-menu > li > a {
+  min-height: 15px;  /* drop it back down from 50px above */
+  background-color: white;
+  border-bottom: solid 1px gray;
+  border-right: solid 1px gray;
+  padding-bottom: 0;
+}
+
+.open .dropdown-menu > li:hover,
+.open .dropdown-menu > li > a:hover {
+  color: white;
+  background-color: gray;
+}
+
+.nav .open > a,
+.nav .open > a:focus {
+  color: white;
+  background-color: gray;
+}
+
+.exports, .function-declare, .console-log, .var,
+.period, .argument-parens, .brackets, .variable-name, .html-tag-equal,
+.equals, .new, .return, .rocket, .if-else-while-etc,
+.string, .argument,
+.argument,
+.number,
+.property, .attr-tag, .jQuery-cash, .object, .method {
+  display: none;
+}
+
+.navbar-toggle {
+  border-color: black;
+}
+.navbar-toggle:hover {
+  background-color: #aaaaaa;
+}
+.navbar-toggle .icon-bar {
+  background-color: black;
+}
+/******************************************************/
+/*                  Home page styles                 */
+/******************************************************/
+.page-header-container#home {
+  border:none;
+  background: none;
+}
+
+.blog-panel, .learning-panel {
+  border: solid 2px white;
+  border-radius: 10px;
+}
+/******************************************************/
+/*               Blog Side Panel styles              */
+/******************************************************/
+#right-panel-body {
+  color:black;
+  background: white;
+  border: solid 2px gray;
+  border-radius: 10px;
+}
+
+#right-panel-body-divider {
+  display: block;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.tree > a,
+.tree:focus > a {
+  color: black;
+  opacity: 1 !important;
+  text-decoration: none;
+}
+
+span.fa-chevron-up {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+a.current-article {
+  color: black;
+}
+
+/******************************************************/
+/*               Blog [main] page styles              */
+/******************************************************/
+
+@-webkit-keyframes set-articles-containers {
+  to { opacity:.8; height: 100%; }
+}
+@keyframes set-articles-containers {
+  to { opacity:.8; height: 100%; }
+}
+
+.articles-container {
+  background: white;
+  border-radius: 10px;
+}
+
+.blog-header {
+  padding: 10px 5px 0 5px;
+  background: white;
+  border-width: 0 0 2px 0;
+  border-bottom: solid 2px gray;
+}
+
+.category-header {
+  color: black;
+}
+
+/******************************************************/
+/*             Blog [article] page styles             */
+/******************************************************/
+.for-light-layout {
+  display:block;
+}
+
+.hide-for-light-layout {
+  display: none;
+}
+
+.article-container {
+  background: white;
+  color: black;
+  border: solid 2px gray;
+  border-radius: 10px;
+}
+
+.article-piece-header {
+  padding-top: 10px;
+}
+
+.divider#article-piece-top-divider,
+.divider#article-piece-bottom-divider {
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top: 1px solid black;
+   border-bottom: 1px solid Black;
+}
+
+/******************************************************/
+/*                  About page styles                 */
+/******************************************************/
+#about-page-panel, #about-author-panel {
+  opacity: .75;
+  background: none;
+}
+
+#about-page-panel {
+  margin-right: 10%;
+}
+
+#about-author-panel {
+  margin-left: 10%;
+}
+
+#about-page-panel-body, #about-author-panel-body {
+  color:black;
+  background: white;
+  border: dashed 1px black;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+  li {
+    border-top: solid 2px black;
+  }
+  .navbar-right li, li.dropdown {
+    text-align: left;
+    font-size: 14px;
+    border-left: none;
+  }
+  li > a {
+    padding-top: 6px;
+  }
+  .navbar-left {
+    position:relative;
+  }
+  .navbar-brand {
+    text-align: left;
+    padding-left: 2%;
+    border: none;
+  }
+  .navbar-right {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  /******************************************************/
+  /*               Blog [main] page styles              */
+  /******************************************************/
+  .articles-container {
+    border: none;
+  }
+  .blog-header {
+    border-bottom: 2px solid black;
+  }
+  /******************************************************/
+  /*             Blog [article] page styles             */
+  /******************************************************/
+  .article-container {
+    border: none;
+  }
+}
+</style>
