@@ -1,0 +1,250 @@
+<!-- move the knight around the board to touch all spaces once and only once ... -->
+<DOCTYPE html>
+<html>
+<head></head>
+<body>
+<div id="chess-board"></div>
+<script type="text/javascript">
+
+const width=8;
+const height=8;
+
+const chessBoard = document.getElementById("chess-board");
+
+let current_position = { x: 2, y: 1 };
+
+let previous_moves = [];
+
+let possible_moves = [];
+
+const init_board = () => {
+  for (let y = height; y > 0; y--) {
+    const row = document.createElement("div");
+
+    row.setAttribute("class", "board-row");
+
+    chessBoard.appendChild(row);
+
+    for (var x = 1; x <= width; x++) {
+      const color = black_or_white_coords(x, y)
+      const square = document.createElement("span");
+
+      square.classList.add("class", "board-square");
+      square.setAttribute("id", `${x.toString()},${y.toString()}`);
+
+      row.appendChild(square);
+
+      if (x === current_position.x && y === current_position.y) {
+        square.appendChild(get_knight(color));
+      } else {
+        square.appendChild(get_square_span(color));
+      }
+    }
+  }
+}
+
+const get_knight = (color) => {
+  const url = (color === "white") ? "https://i.imgur.com/2VNt4fi.png" : "https://i.imgur.com/l2CVz4V.png";
+  const knight = document.createElement("img");
+
+  knight.setAttribute("src", url);
+  knight.setAttribute("class", "square-fill");
+  knight.setAttribute("id", "fire-knight");
+
+  return knight;
+}
+
+const black_or_white_coords = (x, y) => (((x + y) % 2) === 1) ? "black" : "white";
+
+const get_square_span = (color) => {
+  const url = (color === "white") ? "https://i.imgur.com/RhNu1T4.png" : "https://i.imgur.com/wFYooX7.png";
+  const square_span = document.createElement("img");
+
+  square_span.setAttribute("src", url);
+  square_span.classList.add("square-fill");
+
+  return square_span;
+}
+
+const get_possible_square_span = (x, y) => {
+  const color = black_or_white_coords(x, y);
+  const url = (color === "white") ? "https://i.imgur.com/1j5lm24.png" : "https://i.imgur.com/7IyLe66.png";
+  const possible_square_span = document.createElement("img");
+
+  possible_square_span.setAttribute("src", url);
+  possible_square_span.classList.add("possible-square");
+  possible_square_span.classList.add("square-fill");
+
+  return possible_square_span;
+}
+
+const get_no_go_square_span = (x, y) => {
+  const color = black_or_white_coords(x, y);
+  const url = (color === "white") ? "https://i.imgur.com/eHe7SoJ.png" : "https://i.imgur.com/M7puQPF.png";
+  const possible_square_span = document.createElement("img");
+
+  possible_square_span.setAttribute("src", url);
+  possible_square_span.classList.add("square-fill");
+
+  return possible_square_span;
+}
+
+const load_possible_moves = () => {
+  const x = current_position.x;
+  const y = current_position.y;
+
+  let buffer = [];
+
+  if ((x + 2) <= width) {
+    if ((y + 1) <= height) buffer.push({x: x + 2, y: y + 1});
+    if ((y - 1) > 0) buffer.push({x: x + 2, y: y - 1});
+  }
+
+  if ((x - 2) > 0) {
+    if ((y + 1) <= height) buffer.push({x: x - 2, y: y + 1});
+    if ((y - 1) > 0) buffer.push({x: x - 2, y: y - 1});
+  }
+
+  if ((x + 1) <= width) {
+    if ((y + 2) <= height) buffer.push({x: x + 1, y: y + 2});
+    if ((y - 2) > 0) buffer.push({x: x + 1, y: y - 2});
+  }
+
+  if ((x - 1) > 0) {
+    if ((y + 2) <= width) buffer.push({x: x - 1, y: y + 2});
+    if ((y - 2) > 0) buffer.push({x: x - 1, y: y - 2});
+  }
+
+  if ((y + 2) <= height) {
+    if ((x + 1) <= width) buffer.push({y: y + 2, x: x + 1});
+    if ((x - 1) > 0) buffer.push({y: y + 2, x: x - 1});
+  }
+
+  if ((y - 2) > 0) {
+    if ((x + 1) <= width) buffer.push({y: y - 2, x: x + 1});
+    if ((x - 1) > 0) buffer.push({y: y - 2, x: x - 1});
+  }
+
+  if ((y + 1) <= height) {
+    if ((x + 2) <= width) buffer.push({y: y + 1, x: x + 2});
+    if ((x - 2) > 0) buffer.push({y: y + 1, x: x - 2});
+  }
+
+  if ((y - 1) > 0) {
+    if ((x + 2) <= width) buffer.push({y: y - 1, x: x + 2});
+    if ((x - 2) > 0) buffer.push({y: y - 1, x: x - 2});
+  }
+
+  possible_moves = buffer.filter((move) => (previous_moves.filter((previous) =>
+    ((move.x == previous.x) && (move.y == previous.y))
+  ).length == 0) && ((move.x <= width) && (move.y <= height)));
+}
+
+const make_move = (new_x, new_y) => {
+  if (possible_moves.filter((move) => (new_x == move.x && new_y == move.y)).length == 0) {
+    console.log("Not possible to move to: " + new_x + ", " + new_y);
+    return;
+  }
+
+  let color = "";
+
+  old_knight_id = current_position.x.toString() + "," + current_position.y.toString();
+  old_knight_square = document.getElementById(old_knight_id);
+
+  old_knight_square.innerText = "";
+  old_knight_square.appendChild(get_no_go_square_span(current_position.x, current_position.y));
+
+  // now transition current to previous and set the new current
+  previous_moves.push({ x: current_position.x, y: current_position.y });
+
+  current_position = { x: new_x, y: new_y };
+
+  for (var i = 0; i < possible_moves.length; i++) {
+    const possible_x = possible_moves[i].x;
+    const possible_y = possible_moves[i].y;
+
+    color = black_or_white_coords(possible_x, possible_y);
+
+    const span = document.getElementById(`${possible_x.toString()},${possible_y.toString()}`);
+
+    if (span) {
+      span.innerText = ""
+
+      if (possible_x === current_position.x && possible_y === current_position.y) {
+        span.appendChild(get_knight(color));
+      } else {
+        span.appendChild(get_square_span(color));
+      }
+    }
+  }
+
+  load_possible_moves();
+
+  set_possible_move_squares();
+
+  if (possible_moves.length === 0) {
+      setTimeout(() => alert("Game over fucker!"), 800);
+  }
+
+}
+
+const set_possible_move_squares = () => {
+  for (var i = 0; i < possible_moves.length; i++) {
+    const x = possible_moves[i].x;
+    const y = possible_moves[i].y;
+
+    span = document.getElementById(x + "," + y);
+
+    if (span) {
+      span.innerText = "";
+      span.appendChild(get_possible_square_span(x, y));
+      span.onclick = () => make_move(x, y);
+    }
+  }
+}
+
+init_board();
+
+load_possible_moves();
+
+set_possible_move_squares();
+
+</script>
+<style>
+
+#chess-board {
+  margin-left: 10%;
+  margin-top: 8px;
+  width: 880px;
+  height: 800px;
+}
+
+.board-row {
+  margin: 0;
+  width: 880px;
+  height: 100px;
+}
+
+.board-square {
+  margin: 0;
+  display: inline-block;
+  border: 1px solid black;
+  min-height: 99px;
+  min-width: 99px;
+}
+
+.square-fill {
+  margin: 0;
+  padding: 0;
+  height: 99px;
+  width: 99px;
+}
+
+.possible-square:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+</style>
+</body>
+</html>
